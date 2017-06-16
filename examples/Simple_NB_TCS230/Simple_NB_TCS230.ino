@@ -38,8 +38,20 @@ void readSensor()
   {
     if (CS.available()) 
     {
+      // Dump the current raw sensor reading
+      Serial.print("Raw [");
+      Serial.print(CS._Fo.value[0]);
+      Serial.print(",");
+      Serial.print(CS._Fo.value[1]);
+      Serial.print(",");
+      Serial.print(CS._Fo.value[2]);
+      Serial.println("]");
+      
       colorData  rgb;
       
+      // Dump the color data recovered from the raw data.
+      // These data are most likely not useful as there was no
+      // calibration taking place.
       CS.getRGB(&rgb);
       Serial.print("RGB [");
       Serial.print(rgb.value[TCS230_RGB_R]);
